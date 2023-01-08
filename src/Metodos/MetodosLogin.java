@@ -6,7 +6,7 @@ import Repositorio.Repositorio;
 
 public class MetodosLogin {
 
-    public User Login(String username, String password) throws UserInexistenteException {
+    public User login(String username, String password) throws UserInexistenteException {
         for (User u : Repositorio.getInstance().getUsers()) {
             if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
                 Repositorio.getInstance().setCurrentUser(u);
