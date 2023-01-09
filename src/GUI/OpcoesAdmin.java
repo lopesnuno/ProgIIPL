@@ -7,12 +7,8 @@ import javax.swing.*;
 public class OpcoesAdmin {
     private JButton ListarUsers;
     private JButton AdicionarUser;
-    private JButton pagamentosButton;
     private JPanel OpcoesAdmin;
-    private JButton adicionarTiposDeConsultaButton;
-    private JButton alterarTiposDeConsultaButton;
     private JButton BotaoLogout;
-    private JButton btn_addAcionistas;
 
     public OpcoesAdmin(JFrame frame) {
         frame.add(OpcoesAdmin);
