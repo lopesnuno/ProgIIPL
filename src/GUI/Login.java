@@ -8,71 +8,71 @@ import Exceptions.UserInexistenteException;
 import Metodos.MetodosLogin;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Login extends JFrame {
     private JTextField username;
     private JPanel LoginUsers;
     private JPasswordField password;
-    private JButton login; //Button
-    private JButton limpar; //Button
-    private JButton botaoRegisto;
+    private JButton BotaoLogin;
+    private JButton BotaoLimpar;
+    private JButton BotaoRegisto;
     private final MetodosLogin l;
 
     public Login(JFrame frame) {
+        frame.setTitle("Gestão de Stand de Automóveis");
+        frame.setPreferredSize(new Dimension(500, 500));
+
         l = new MetodosLogin();
         frame.add(LoginUsers);
         frame.pack();
         frame.setVisible(true);
         resetDados();
-        botaoLogin(frame);
-        clicarBotaoRegistar(frame);
-    }
-
-    public void resetCampos() {
-        username.setText(null);
-        password.setText(null);
+        login(frame);
+        clickBotaoRegistar(frame);
     }
 
     public void resetDados() {
-        limpar.addActionListener(e -> resetCampos());
+        BotaoLimpar.addActionListener(e -> {
+            username.setText(null);
+            password.setText(null);
+        });
     }
 
-    public void botaoLogin(JFrame frame) {
-        login.addActionListener(e -> clicarBotaoLogin(frame));
+    public void login(JFrame frame) {
+        BotaoLogin.addActionListener(e -> {
+            String username, password;
+            username = this.username.getText();
+            password = String.valueOf(this.password.getPassword());
+
+            try {
+                User login = l.login(username, password);
+
+                if (login instanceof Cliente) {
+                    LoginUsers.setVisible(false);
+                    //TODO: Frame Cliente
+                }
+
+                if (login instanceof Admin) {
+                    LoginUsers.setVisible(false);
+                    //TODO: Frame Admin
+                }
+
+                if (login instanceof Dono) {
+                    LoginUsers.setVisible(false);
+                    //TODO: Frame Admin
+                }
+
+            } catch (UserInexistenteException err) {
+                JOptionPane.showMessageDialog(null, err.getMessage());
+            }
+        });
     }
 
-    public void clicarBotaoLogin(JFrame frame) {
-        String username, password;
-        username = this.username.getText();
-        password = String.valueOf(this.password.getPassword());
-
-        try {
-            User login = l.login(username, password);
-
-            if (login instanceof Cliente) {
-                LoginUsers.setVisible(false);
-                //TODO: Frame Cliente
-            }
-
-            if (login instanceof Admin) {
-                LoginUsers.setVisible(false);
-                //TODO: Frame Admin
-            }
-
-            if (login instanceof Dono) {
-                LoginUsers.setVisible(false);
-                //TODO: Frame Admin
-            }
-
-        } catch (UserInexistenteException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }
-
-    public void clicarBotaoRegistar(JFrame frame) {
-        botaoRegisto.addActionListener(e -> {
+    public void clickBotaoRegistar(JFrame frame) {
+        BotaoRegisto.addActionListener(e -> {
             LoginUsers.setVisible(false);
-            //TODO: Frame registo
+            new RegistoCliente(frame);
         });
     }
 }
