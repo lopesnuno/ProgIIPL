@@ -2,7 +2,7 @@ package Metodos;
 
 import Entidades.User;
 import Exceptions.JaExisteUserException;
-import Repositorio.Repositorio;
+import Repositorio.*;
 
 public class MetodosAnon {
     public static void addUser(User user) throws JaExisteUserException {
@@ -18,7 +18,7 @@ public class MetodosAnon {
             throw new JaExisteUserException("Este utilizador já existe !");
         } else {
             Repositorio.getInstance().getUsers().add(user);
-            //TODO: Add serializable repo
+            RepositorioSerializable.writeUsers();
         }
     }
 }
