@@ -1,13 +1,16 @@
 package GUI;
 
+import Entidades.Admin;
 import Entidades.Cliente;
+import Entidades.Dono;
+import Entidades.User;
 import Exceptions.JaExisteUserException;
-import Metodos.MetodosAnon;
+import Metodos.MetodosAdmin;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class RegistoCliente extends JFrame {
+public class AdicionarUserAdmin extends JFrame {
     private JPanel RegistarCliente;
     private JTextField username;
     private JPasswordField password;
@@ -20,17 +23,17 @@ public class RegistoCliente extends JFrame {
     private JButton BotaoRegistar;
     private JButton BotaoLimpar;
     private JButton BotaoVoltar;
-    private final MetodosAnon metodos;
+    private String userType;
 
-    public RegistoCliente(JFrame frame) {
+    public AdicionarUserAdmin(JFrame frame, String userType) {
         frame.setTitle("Registo de Cliente");
         frame.setPreferredSize(new Dimension(500, 500));
-
-        metodos = new MetodosAnon();
-
         frame.add(RegistarCliente);
         frame.pack();
         frame.setVisible(true);
+
+        this.userType = userType;
+
         registarCliente(frame);
         limparDados();
         voltar(frame);
@@ -47,14 +50,27 @@ public class RegistoCliente extends JFrame {
             String localidade = this.localidade.getText();
             int nif = Integer.parseInt(this.nif.getText());
 
-            Cliente user = new Cliente(username, passwd, nome, numCC, nif, telefone, morada, localidade);
+            User user;
             try {
-                metodos.addUser(user);
+                if (userType.equals("Cliente")) {
+                    user = new Cliente(username, passwd, nome, numCC, nif, telefone, morada, localidade);
+                    MetodosAdmin.addUser(user);
+                }
+
+                if (userType.equals("Admin")) {
+                    user = new Admin(username, passwd, nome, numCC, nif, telefone, morada, localidade);
+                    MetodosAdmin.addUser(user);
+                }
+
+                if (userType.equals("Dono")) {
+                    user = new Dono(username, passwd, nome, numCC, nif, telefone, morada, localidade);
+                    MetodosAdmin.addUser(user);
+                }
 
                 JOptionPane.showMessageDialog(null, "Registado com sucesso.");
                 RegistarCliente.setVisible(false);
 
-                new OpcoesCliente(frame);
+                new OpcoesAdmin(frame);
             } catch (JaExisteUserException err) {
                 JOptionPane.showMessageDialog(null, err.getMessage());
             }
@@ -77,7 +93,7 @@ public class RegistoCliente extends JFrame {
     public void voltar(JFrame frame) {
         BotaoVoltar.addActionListener(e -> {
             RegistarCliente.setVisible(false);
-            new Login(frame);
+            new AdicionarTipoUser(frame);
         });
     }
 
