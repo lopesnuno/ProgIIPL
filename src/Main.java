@@ -20,7 +20,7 @@ public class Main {
 
         JFrame frame = new JFrame("Gestão de Stand de Automóveis");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(800, 600));
+        frame.setPreferredSize(new Dimension(500, 500));
         frame.setResizable(true);
         new Login(frame);
     }

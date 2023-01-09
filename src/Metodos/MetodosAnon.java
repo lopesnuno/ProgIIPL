@@ -5,7 +5,7 @@ import Exceptions.JaExisteUserException;
 import Repositorio.*;
 
 public class MetodosAnon {
-    public static void addUser(User user) throws JaExisteUserException {
+    public void addUser(User user) throws JaExisteUserException {
         boolean existe = false;
         for (User u : Repositorio.getInstance().getUsers()) {
             if (u.getUsername().equals(user.getUsername()) || u.getNIF() == user.getNIF()) {
