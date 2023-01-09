@@ -20,6 +20,7 @@ public class OpcoesAdmin {
         frame.setVisible(true);
 
         listarUsers(frame);
+        adicionarUser(frame);
         logout(frame);
     }
 
@@ -27,6 +28,13 @@ public class OpcoesAdmin {
         ListarUsers.addActionListener(e -> {
             OpcoesAdmin.setVisible(false);
             new ListarUsersAdmin(frame);
+        });
+    }
+
+    public void adicionarUser(JFrame frame) {
+        AdicionarUser.addActionListener(e -> {
+            OpcoesAdmin.setVisible(false);
+            new AdicionarTipoUser(frame);
         });
     }
 

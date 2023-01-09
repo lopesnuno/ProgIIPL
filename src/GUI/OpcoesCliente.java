@@ -5,7 +5,7 @@ import Repositorio.Repositorio;
 
 import javax.swing.*;
 
-public class ClienteRegistado extends JFrame {
+public class OpcoesCliente extends JFrame {
     private JButton BotaoListarDados;
     private JButton BotaoListarEmpresas;
     private JButton BotaoListaAnimais;
@@ -15,7 +15,7 @@ public class ClienteRegistado extends JFrame {
     private JPanel FrameCliente;
     private JButton BotaoLogout;
 
-    public ClienteRegistado(JFrame frame) {
+    public OpcoesCliente(JFrame frame) {
         frame.setTitle("Gestão de Stand de Automóveis");
         frame.add(FrameCliente);
         frame.pack();

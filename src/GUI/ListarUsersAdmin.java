@@ -48,6 +48,7 @@ public class ListarUsersAdmin {
 
         voltar(frame);
         alterarDados(frame);
+        removerUser(frame);
     }
 
     public void voltar(JFrame frame) {
@@ -78,6 +79,16 @@ public class ListarUsersAdmin {
             User u = MetodosAdmin.selectUserPorUsername(String.valueOf(usersComboBox.getSelectedItem()));
             ListaUsers.setVisible(false);
             new AlterarDadosUserAdmin(frame, u);
+        });
+    }
+
+    public void removerUser(JFrame frame) {
+        BotaoEliminar.addActionListener(e -> {
+            User u = MetodosAdmin.selectUserPorUsername(String.valueOf(usersComboBox.getSelectedItem()));
+            MetodosAdmin.removerUser(u);
+            JOptionPane.showMessageDialog(null, "Utilizador removido.");
+            ListaUsers.setVisible(false);
+            new OpcoesAdmin(frame);
         });
     }
 }

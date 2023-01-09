@@ -99,7 +99,7 @@ public class AlterarDadosUserAdmin extends JFrame {
     public void voltar(JFrame frame) {
         BotaoVoltar.addActionListener(e -> {
             AlterarDadosUserAdmin.setVisible(false);
-            new ClienteRegistado(frame);
+            new OpcoesCliente(frame);
         });
     }
 

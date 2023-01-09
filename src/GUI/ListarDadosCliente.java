@@ -2,7 +2,6 @@ package GUI;
 
 import Entidades.Cliente;
 import Exceptions.AlterarDadosException;
-import Metodos.MetodosAnon;
 import Metodos.MetodosCliente;
 import Repositorio.RepositorioSerializable;
 
@@ -77,7 +76,7 @@ public class ListarDadosCliente extends JFrame {
 
                 JOptionPane.showMessageDialog(null, "Dados alterados com sucesso.");
                 DadosCliente.setVisible(false);
-                new ClienteRegistado(frame);
+                new OpcoesCliente(frame);
             } catch (AlterarDadosException err) {
                 JOptionPane.showMessageDialog(null, err.getMessage());
             }
@@ -100,7 +99,7 @@ public class ListarDadosCliente extends JFrame {
     public void voltar(JFrame frame) {
         BotaoVoltar.addActionListener(e -> {
             DadosCliente.setVisible(false);
-            new ClienteRegistado(frame);
+            new OpcoesCliente(frame);
         });
     }
 

@@ -51,7 +51,7 @@ public class Login extends JFrame {
 
                 if (login instanceof Cliente) {
                     LoginUsers.setVisible(false);
-                    new ClienteRegistado(frame);
+                    new OpcoesCliente(frame);
                 }
 
                 if (login instanceof Admin) {
