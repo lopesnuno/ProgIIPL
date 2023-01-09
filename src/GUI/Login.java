@@ -22,11 +22,12 @@ public class Login extends JFrame {
     public Login(JFrame frame) {
         frame.setTitle("Gestão de Stand de Automóveis");
         frame.setPreferredSize(new Dimension(500, 500));
-
-        l = new MetodosLogin();
         frame.add(LoginUsers);
         frame.pack();
         frame.setVisible(true);
+
+        l = new MetodosLogin();
+
         resetDados();
         login(frame);
         clickBotaoRegistar(frame);
@@ -50,7 +51,7 @@ public class Login extends JFrame {
 
                 if (login instanceof Cliente) {
                     LoginUsers.setVisible(false);
-                    //TODO: Frame Cliente
+                    new ClienteRegistado(frame);
                 }
 
                 if (login instanceof Admin) {

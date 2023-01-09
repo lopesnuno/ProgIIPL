@@ -54,8 +54,7 @@ public class RegistoCliente extends JFrame {
                 JOptionPane.showMessageDialog(null, "Registado com sucesso.");
                 RegistarCliente.setVisible(false);
 
-                //TODO: Frame Cliente
-                new Login(frame);
+                new ClienteRegistado(frame);
             } catch (JaExisteUserException err) {
                 JOptionPane.showMessageDialog(null, err.getMessage());
             }
