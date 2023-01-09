@@ -14,7 +14,7 @@ public class Main {
         RepositorioSerializable.readBin();
         if(r.getUsers().isEmpty()){
             r.getUsers().add(new Admin("admin","admin","Admin",0,0,
-                    0,"Viana do Castelo","IPVC_ESTG"));
+                    0,"Vila de Prado","Braga"));
             RepositorioSerializable.writeUsers();
         }
 

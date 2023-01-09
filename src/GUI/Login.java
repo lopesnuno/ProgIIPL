@@ -56,7 +56,7 @@ public class Login extends JFrame {
 
                 if (login instanceof Admin) {
                     LoginUsers.setVisible(false);
-                    //TODO: Frame Admin
+                    new OpcoesAdmin(frame);
                 }
 
                 if (login instanceof Dono) {
