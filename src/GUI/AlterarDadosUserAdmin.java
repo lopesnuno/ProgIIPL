@@ -1,15 +1,15 @@
 package GUI;
 
-import Entidades.Cliente;
+import Entidades.User;
 import Exceptions.AlterarDadosException;
-import Metodos.MetodosCliente;
+import Metodos.MetodosAdmin;
 import Repositorio.RepositorioSerializable;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ListarDadosCliente extends JFrame {
-    private JPanel DadosCliente;
+public class AlterarDadosUserAdmin extends JFrame {
+    private JPanel AlterarDadosUserAdmin;
     private JTextField username;
     private JPasswordField password;
     private JTextField nome;
@@ -22,28 +22,28 @@ public class ListarDadosCliente extends JFrame {
     private JButton BotaoLimpar;
     private JButton BotaoVoltar;
 
-    public ListarDadosCliente(JFrame frame, Cliente cliente) {
+    public AlterarDadosUserAdmin(JFrame frame, User user) {
         frame.setTitle("Alterar Dados");
         frame.setPreferredSize(new Dimension(500, 500));
 
-        frame.add(DadosCliente);
+        frame.add(AlterarDadosUserAdmin);
         frame.pack();
         frame.setVisible(true);
         limparDados();
         voltar(frame);
-        alterarDados(frame, cliente);
+        alterarDados(frame, user);
 
-        username.setText(cliente.getUsername());
-        password.setText(cliente.getPassword());
-        nome.setText(cliente.getNome());
-        numCC.setText(String.valueOf(cliente.getNumCC()));
-        nif.setText(String.valueOf(cliente.getNIF()));
-        telefone.setText(String.valueOf(cliente.getTelefone()));
-        morada.setText(String.valueOf(cliente.getMorada()));
-        localidade.setText(String.valueOf(cliente.getLocalidade()));
+        username.setText(user.getUsername());
+        password.setText(user.getPassword());
+        nome.setText(user.getNome());
+        numCC.setText(String.valueOf(user.getNumCC()));
+        nif.setText(String.valueOf(user.getNIF()));
+        telefone.setText(String.valueOf(user.getTelefone()));
+        morada.setText(String.valueOf(user.getMorada()));
+        localidade.setText(String.valueOf(user.getLocalidade()));
     }
 
-    public void alterarDados(JFrame frame, Cliente cliente) {
+    public void alterarDados(JFrame frame, User user) {
         BotaoAlterar.addActionListener(e -> {
             int telefone = 0, nif = 0, numCC = 0;
             String username = this.username.getText();
@@ -62,21 +62,21 @@ public class ListarDadosCliente extends JFrame {
             }
 
             try {
-                cliente.setUsername(username);
-                cliente.setPassword(password);
-                cliente.setNome(nome);
-                cliente.setNumCC(numCC);
-                cliente.setNIF(nif);
-                cliente.setTelefone(telefone);
-                cliente.setMorada(morada);
-                cliente.setLocalidade(localidade);
+                user.setUsername(username);
+                user.setPassword(password);
+                user.setNome(nome);
+                user.setNumCC(numCC);
+                user.setNIF(nif);
+                user.setTelefone(telefone);
+                user.setMorada(morada);
+                user.setLocalidade(localidade);
 
-                MetodosCliente.alterarDadosCliente(cliente);
+                MetodosAdmin.alterarDadosUser(user);
                 RepositorioSerializable.writeUsers();
 
                 JOptionPane.showMessageDialog(null, "Dados alterados com sucesso.");
-                DadosCliente.setVisible(false);
-                new OpcoesCliente(frame);
+                AlterarDadosUserAdmin.setVisible(false);
+                new ListarUsersAdmin(frame);
             } catch (AlterarDadosException err) {
                 JOptionPane.showMessageDialog(null, err.getMessage());
             }
@@ -98,7 +98,7 @@ public class ListarDadosCliente extends JFrame {
 
     public void voltar(JFrame frame) {
         BotaoVoltar.addActionListener(e -> {
-            DadosCliente.setVisible(false);
+            AlterarDadosUserAdmin.setVisible(false);
             new OpcoesCliente(frame);
         });
     }
