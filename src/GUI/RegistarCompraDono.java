@@ -1,6 +1,7 @@
 package GUI;
 
 import Entidades.Reserva;
+import Estados.Estados;
 import Exceptions.JaFoiCompradoException;
 import Metodos.MetodosCompra;
 import Metodos.MetodosReserva;
@@ -36,10 +37,12 @@ public class RegistarCompraDono {
         model.addColumn("Matricula");
 
         for (Reserva r : Repositorio.getInstance().getReservas()) {
-            model.addRow(new Object[]{r.getCarro().getMarca(), r.getCarro().getModelo(), r.getCarro().getMatricula(),
-                    r.getCarro().getPreco(), r.getDataCompra(), r.getCarro().getEstado(),
-                    r.getCliente().getUsername()});
-            reservasComboBox.addItem(r.getCarro().getMatricula());
+            if (r.getCarro().getEstado() != Estados.CONCLUIDO) {
+                model.addRow(new Object[]{r.getCarro().getMarca(), r.getCarro().getModelo(), r.getCarro().getMatricula(),
+                        r.getCarro().getPreco(), r.getDataCompra(), r.getCarro().getEstado(),
+                        r.getCliente().getUsername()});
+                reservasComboBox.addItem(r.getCarro().getMatricula());
+            }
         }
 
         confirmarCompra(frame);
@@ -65,7 +68,7 @@ public class RegistarCompraDono {
     public void voltar(JFrame frame) {
         BotaoVoltar.addActionListener(e -> {
             ListaCarros.setVisible(false);
-            new OpcoesCliente(frame);
+            new OpcoesDono(frame);
         });
     }
 }

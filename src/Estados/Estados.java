@@ -5,5 +5,6 @@ public enum Estados {
     DISPONIVEL,
     RESERVADO,
     PENDENTE,
-    CONCLUIDO
+    CONCLUIDO,
+    COMPRADO
 }

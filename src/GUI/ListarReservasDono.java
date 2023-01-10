@@ -1,6 +1,7 @@
 package GUI;
 
 import Entidades.Reserva;
+import Estados.Estados;
 import Metodos.MetodosCarro;
 import Metodos.MetodosReserva;
 import Repositorio.Repositorio;
@@ -41,7 +42,8 @@ public class ListarReservasDono {
             model.addRow(new Object[]{r.getCarro().getMarca(), r.getCarro().getModelo(), r.getCarro().getMatricula(),
                     r.getCarro().getPreco(), r.getDataCompra(), r.getCarro().getEstado(),
                     r.getCliente().getUsername()});
-            reservasComboBox.addItem(r.getCarro().getMatricula());
+            if (r.getCarro().getEstado() != Estados.CONCLUIDO || r.getCarro().getEstado() != Estados.COMPRADO)
+                reservasComboBox.addItem(r.getCarro().getMatricula());
         }
 
         cancelarReserva(frame);

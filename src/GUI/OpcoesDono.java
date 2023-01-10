@@ -10,6 +10,7 @@ public class OpcoesDono {
     private JButton BotaoAdicionarCarro;
     private JButton BotaoListarReservas;
     private JButton BotaoRegistarCompra;
+    private JButton BotaoListarCompras;
 
     public OpcoesDono(JFrame frame) {
         frame.add(OpcoesDono);
@@ -21,6 +22,7 @@ public class OpcoesDono {
         listarCarros(frame);
         listarReservas(frame);
         registarCompra(frame);
+        listaCompras(frame);
         logout(frame);
     }
 
@@ -56,6 +58,13 @@ public class OpcoesDono {
         BotaoRegistarCompra.addActionListener(e -> {
             OpcoesDono.setVisible(false);
             new RegistarCompraDono(frame);
+        });
+    }
+
+    public void listaCompras(JFrame frame) {
+        BotaoListarCompras.addActionListener(e -> {
+            OpcoesDono.setVisible(false);
+            new ListarComprasDono(frame);
         });
     }
 
