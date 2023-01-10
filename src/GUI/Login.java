@@ -61,7 +61,7 @@ public class Login extends JFrame {
 
                 if (login instanceof Dono) {
                     LoginUsers.setVisible(false);
-                    //TODO: Frame Admin
+                    new OpcoesDono(frame);
                 }
 
             } catch (UserInexistenteException err) {
