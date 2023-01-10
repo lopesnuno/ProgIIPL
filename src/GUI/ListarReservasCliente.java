@@ -1,6 +1,7 @@
 package GUI;
 
 import Entidades.Reserva;
+import Estados.Estados;
 import Repositorio.Repositorio;
 
 import javax.swing.*;
@@ -38,7 +39,11 @@ public class ListarReservasCliente {
                 model.addRow(new Object[]{r.getCarro().getMarca(), r.getCarro().getModelo(),
                         r.getCarro().getMatricula(), r.getCarro().getPreco(),
                         r.getDataCompra(), r.getCarro().getEstado()});
-                reservasComboBox.addItem(r.getCarro().getMatricula());
+                // Apenas adicionar à ComboBox ainda não comprou o carro
+                if (r.getCarro().getEstado().equals(Estados.CONCLUIDO)
+                        || r.getCarro().getEstado().equals(Estados.COMPRADO)) {
+                    reservasComboBox.addItem(r.getCarro().getMatricula());
+                }
             }
         }
 

@@ -11,6 +11,7 @@ public class OpcoesCliente extends JFrame {
     private JButton BotaoLogout;
     private JButton BotaoListarCarros;
     private JButton BotaoListarReservas;
+    private JButton BotaoListarCompras;
 
     public OpcoesCliente(JFrame frame) {
         frame.setTitle("Gestão de Stand de Automóveis");
@@ -21,6 +22,7 @@ public class OpcoesCliente extends JFrame {
         listarDados(frame);
         listarCarros(frame);
         listarReservas(frame);
+        listarCompras(frame);
         logout(frame);
     }
 
@@ -41,6 +43,13 @@ public class OpcoesCliente extends JFrame {
         BotaoListarReservas.addActionListener(e -> {
             FrameCliente.setVisible(false);
             new ListarReservasCliente(frame);
+        });
+    }
+
+    public void listarCompras(JFrame frame) {
+        BotaoListarCompras.addActionListener(e -> {
+            FrameCliente.setVisible(false);
+            new ListarComprasCliente(frame);
         });
     }
 

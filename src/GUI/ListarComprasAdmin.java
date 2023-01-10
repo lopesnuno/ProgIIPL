@@ -1,23 +1,22 @@
 package GUI;
 
-import Entidades.Compra;
 import Entidades.Reserva;
-import Estados.Estados;
 import Repositorio.Repositorio;
+import Estados.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class ListarComprasDono {
-    private JPanel ListarComprasDono;
+public class ListarComprasAdmin {
+    private JPanel ListarComprasAdmin;
     private JButton BotaoVoltar;
     private JTable Compras;
 
-    public ListarComprasDono(JFrame frame) {
+    public ListarComprasAdmin(JFrame frame) {
         frame.setTitle("Lista de Compras");
         frame.setPreferredSize(new Dimension(800, 600));
-        frame.add(ListarComprasDono);
+        frame.add(ListarComprasAdmin);
         frame.pack();
         frame.setVisible(true);
 
@@ -42,8 +41,8 @@ public class ListarComprasDono {
 
     public void voltar(JFrame frame) {
         BotaoVoltar.addActionListener(e -> {
-            ListarComprasDono.setVisible(false);
-            new OpcoesDono(frame);
+            ListarComprasAdmin.setVisible(false);
+            new OpcoesAdmin(frame);
         });
     }
 }

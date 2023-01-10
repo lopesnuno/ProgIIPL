@@ -1,23 +1,23 @@
 package GUI;
 
-import Entidades.Compra;
+import Entidades.Cliente;
 import Entidades.Reserva;
-import Estados.Estados;
 import Repositorio.Repositorio;
+import Estados.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class ListarComprasDono {
-    private JPanel ListarComprasDono;
+public class ListarComprasCliente {
+    private JPanel ListarComprasCliente;
     private JButton BotaoVoltar;
     private JTable Compras;
 
-    public ListarComprasDono(JFrame frame) {
+    public ListarComprasCliente(JFrame frame) {
         frame.setTitle("Lista de Compras");
         frame.setPreferredSize(new Dimension(800, 600));
-        frame.add(ListarComprasDono);
+        frame.add(ListarComprasCliente);
         frame.pack();
         frame.setVisible(true);
 
@@ -30,11 +30,16 @@ public class ListarComprasDono {
         model.addColumn("Matricula");
         model.addColumn("Comprador");
 
+        Cliente cliente = (Cliente) Repositorio.getInstance().getCurrentUser();
+
         for (Reserva r : Repositorio.getInstance().getReservas()) {
-            if (r.getCarro().getEstado().equals(Estados.CONCLUIDO) || r.getCarro().getEstado().equals(Estados.COMPRADO))
+            if (r.getCliente().getUsername().equals(Repositorio.getInstance().getCurrentUser().getUsername()) &&
+                    (r.getCarro().getEstado().equals(Estados.CONCLUIDO)
+                            || r.getCarro().getEstado().equals(Estados.COMPRADO))) {
                 model.addRow(new Object[]{r.getCarro().getMarca(), r.getCarro().getModelo(), r.getCarro().getPreco(),
                         r.getCarro().getMatricula(), r.getCliente().getUsername()
                 });
+            }
         }
 
         voltar(frame);
@@ -42,8 +47,8 @@ public class ListarComprasDono {
 
     public void voltar(JFrame frame) {
         BotaoVoltar.addActionListener(e -> {
-            ListarComprasDono.setVisible(false);
-            new OpcoesDono(frame);
+            ListarComprasCliente.setVisible(false);
+            new OpcoesCliente(frame);
         });
     }
 }
