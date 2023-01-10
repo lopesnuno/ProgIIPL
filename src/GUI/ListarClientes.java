@@ -2,7 +2,7 @@ package GUI;
 
 import Entidades.Cliente;
 import Entidades.User;
-import Metodos.MetodosAdmin;
+import Metodos.MetodosUser;
 import Repositorio.Repositorio;
 
 import javax.swing.*;
@@ -13,7 +13,7 @@ public class ListarClientes {
     private JPanel ListaClientes;
     private JButton BotaoVoltar;
     private JTable Clientes;
-    private JComboBox usersComboBox;
+    private JComboBox clientesComboBox;
     private JButton BotaoEliminar;
     private JButton BotaoAlterar;
 
@@ -41,7 +41,7 @@ public class ListarClientes {
                 model.addRow(new Object[]{u.getUsername(), u.getNome(), u.getNumCC(), u.getNIF(), u.getTelefone(),
                         u.getMorada(), u.getLocalidade()
                 });
-                usersComboBox.addItem(u.getUsername());
+                clientesComboBox.addItem(u.getUsername());
             }
         }
 
@@ -60,17 +60,17 @@ public class ListarClientes {
     //TODO: Refactor
     public void alterarDados(JFrame frame) {
         BotaoAlterar.addActionListener(e -> {
-            User u = MetodosAdmin.selectUserPorUsername(String.valueOf(usersComboBox.getSelectedItem()));
+            User u = MetodosUser.selectUserPorUsername(String.valueOf(clientesComboBox.getSelectedItem()));
             ListaClientes.setVisible(false);
-            new AlterarDadosUserAdmin(frame, u);
+            new AlterarDadosClienteDono(frame, u);
         });
     }
 
     //TODO: Refactor -> select e remove
     public void removerUser(JFrame frame) {
         BotaoEliminar.addActionListener(e -> {
-            User u = MetodosAdmin.selectUserPorUsername(String.valueOf(usersComboBox.getSelectedItem()));
-            MetodosAdmin.removerUser(u);
+            User u = MetodosUser.selectUserPorUsername(String.valueOf(clientesComboBox.getSelectedItem()));
+            MetodosUser.removerUser(u);
             JOptionPane.showMessageDialog(null, "Utilizador removido.");
             ListaClientes.setVisible(false);
             new OpcoesDono(frame);

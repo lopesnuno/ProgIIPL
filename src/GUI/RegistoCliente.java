@@ -2,7 +2,7 @@ package GUI;
 
 import Entidades.Cliente;
 import Exceptions.JaExisteUserException;
-import Metodos.MetodosAnon;
+import Metodos.MetodosUser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,17 +20,14 @@ public class RegistoCliente extends JFrame {
     private JButton BotaoRegistar;
     private JButton BotaoLimpar;
     private JButton BotaoVoltar;
-    private final MetodosAnon metodos;
 
     public RegistoCliente(JFrame frame) {
         frame.setTitle("Registo de Cliente");
         frame.setPreferredSize(new Dimension(500, 500));
-
-        metodos = new MetodosAnon();
-
         frame.add(RegistarCliente);
         frame.pack();
         frame.setVisible(true);
+
         registarCliente(frame);
         limparDados();
         voltar(frame);
@@ -49,7 +46,7 @@ public class RegistoCliente extends JFrame {
 
             Cliente user = new Cliente(username, passwd, nome, numCC, nif, telefone, morada, localidade);
             try {
-                metodos.addUser(user);
+                MetodosUser.addUser(user);
 
                 JOptionPane.showMessageDialog(null, "Registado com sucesso.");
                 RegistarCliente.setVisible(false);
