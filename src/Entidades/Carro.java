@@ -3,18 +3,28 @@ package Entidades;
 import Estados.Estados;
 
 public class Carro {
+    private String matricula;
     private String marca;
     private String modelo;
     private int ano;
     private double preco;
     private Estados estado;
 
-    public Carro(String marca, String modelo, int ano, double preco) {
+    public Carro(String matricula, String marca, String modelo, int ano, double preco) {
+        this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
         this.preco = preco;
         estado = Estados.DISPONIVEL;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
     public String getMarca() {
