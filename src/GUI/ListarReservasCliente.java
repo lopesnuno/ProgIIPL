@@ -34,9 +34,12 @@ public class ListarReservasCliente {
         model.addColumn("Estado");
 
         for (Reserva r : Repositorio.getInstance().getReservas()) {
-            model.addRow(new Object[]{r.getCarro().getMarca(), r.getCarro().getModelo(), r.getCarro().getMatricula(),
-                    r.getCarro().getPreco(), r.getDataCompra(), r.getCarro().getEstado()});
-            reservasComboBox.addItem(r.getCarro().getMatricula());
+            if (r.getCliente().getUsername().equals(Repositorio.getInstance().getCurrentUser().getUsername())) {
+                model.addRow(new Object[]{r.getCarro().getMarca(), r.getCarro().getModelo(),
+                        r.getCarro().getMatricula(), r.getCarro().getPreco(),
+                        r.getDataCompra(), r.getCarro().getEstado()});
+                reservasComboBox.addItem(r.getCarro().getMatricula());
+            }
         }
 
         voltar(frame);
