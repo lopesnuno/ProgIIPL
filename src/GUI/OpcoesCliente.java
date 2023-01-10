@@ -7,11 +7,6 @@ import javax.swing.*;
 
 public class OpcoesCliente extends JFrame {
     private JButton BotaoListarDados;
-    private JButton BotaoListarEmpresas;
-    private JButton BotaoListaAnimais;
-    private JButton BotaoMarcarConsulta;
-    private JButton BotaoEditarConsulta;
-    private JButton BotaoPagaConsulta;
     private JPanel FrameCliente;
     private JButton BotaoLogout;
 

@@ -4,7 +4,7 @@ import Entidades.Admin;
 import Entidades.Cliente;
 import Entidades.Dono;
 import Entidades.User;
-import Metodos.MetodosAdmin;
+import Metodos.MetodosUser;
 import Repositorio.Repositorio;
 
 import javax.swing.*;
@@ -76,7 +76,7 @@ public class ListarUsersAdmin {
 
     public void alterarDados(JFrame frame) {
         BotaoAlterar.addActionListener(e -> {
-            User u = MetodosAdmin.selectUserPorUsername(String.valueOf(usersComboBox.getSelectedItem()));
+            User u = MetodosUser.selectUserPorUsername(String.valueOf(usersComboBox.getSelectedItem()));
             ListaUsers.setVisible(false);
             new AlterarDadosUserAdmin(frame, u);
         });
@@ -84,8 +84,8 @@ public class ListarUsersAdmin {
 
     public void removerUser(JFrame frame) {
         BotaoEliminar.addActionListener(e -> {
-            User u = MetodosAdmin.selectUserPorUsername(String.valueOf(usersComboBox.getSelectedItem()));
-            MetodosAdmin.removerUser(u);
+            User u = MetodosUser.selectUserPorUsername(String.valueOf(usersComboBox.getSelectedItem()));
+            MetodosUser.removerUser(u);
             JOptionPane.showMessageDialog(null, "Utilizador removido.");
             ListaUsers.setVisible(false);
             new OpcoesAdmin(frame);

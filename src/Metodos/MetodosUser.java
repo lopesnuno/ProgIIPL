@@ -8,7 +8,7 @@ import Exceptions.JaExisteUserException;
 import Repositorio.Repositorio;
 import Repositorio.RepositorioSerializable;
 
-public class MetodosAdmin {
+public class MetodosUser {
     public static User selectUserPorUsername(String username) {
         for (User u : Repositorio.getInstance().getUsers()) {
             if (u.getUsername().equals(username)) {

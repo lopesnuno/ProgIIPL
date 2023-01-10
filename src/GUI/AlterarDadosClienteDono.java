@@ -8,8 +8,8 @@ import Repositorio.RepositorioSerializable;
 import javax.swing.*;
 import java.awt.*;
 
-public class AlterarDadosUserAdmin extends JFrame {
-    private JPanel AlterarDadosUserAdmin;
+public class AlterarDadosClienteDono extends JFrame {
+    private JPanel AlterarDadosCliente;
     private JTextField username;
     private JPasswordField password;
     private JTextField nome;
@@ -22,11 +22,11 @@ public class AlterarDadosUserAdmin extends JFrame {
     private JButton BotaoLimpar;
     private JButton BotaoVoltar;
 
-    public AlterarDadosUserAdmin(JFrame frame, User user) {
+    public AlterarDadosClienteDono(JFrame frame, User user) {
         frame.setTitle("Alterar Dados");
         frame.setPreferredSize(new Dimension(500, 500));
 
-        frame.add(AlterarDadosUserAdmin);
+        frame.add(AlterarDadosCliente);
         frame.pack();
         frame.setVisible(true);
         limpar();
@@ -75,8 +75,8 @@ public class AlterarDadosUserAdmin extends JFrame {
                 RepositorioSerializable.writeUsers();
 
                 JOptionPane.showMessageDialog(null, "Dados alterados com sucesso.");
-                AlterarDadosUserAdmin.setVisible(false);
-                new ListarUsersAdmin(frame);
+                AlterarDadosCliente.setVisible(false);
+                new ListarClientes(frame);
             } catch (AlterarDadosException err) {
                 JOptionPane.showMessageDialog(null, err.getMessage());
             }
@@ -98,8 +98,8 @@ public class AlterarDadosUserAdmin extends JFrame {
 
     public void voltar(JFrame frame) {
         BotaoVoltar.addActionListener(e -> {
-            AlterarDadosUserAdmin.setVisible(false);
-            new OpcoesAdmin(frame);
+            AlterarDadosCliente.setVisible(false);
+            new ListarClientes(frame);
         });
     }
 

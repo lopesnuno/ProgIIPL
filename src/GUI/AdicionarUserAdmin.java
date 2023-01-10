@@ -5,7 +5,7 @@ import Entidades.Cliente;
 import Entidades.Dono;
 import Entidades.User;
 import Exceptions.JaExisteUserException;
-import Metodos.MetodosAdmin;
+import Metodos.MetodosUser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,17 +54,17 @@ public class AdicionarUserAdmin extends JFrame {
             try {
                 if (userType.equals("Cliente")) {
                     user = new Cliente(username, passwd, nome, numCC, nif, telefone, morada, localidade);
-                    MetodosAdmin.addUser(user);
+                    MetodosUser.addUser(user);
                 }
 
                 if (userType.equals("Admin")) {
                     user = new Admin(username, passwd, nome, numCC, nif, telefone, morada, localidade);
-                    MetodosAdmin.addUser(user);
+                    MetodosUser.addUser(user);
                 }
 
                 if (userType.equals("Dono")) {
                     user = new Dono(username, passwd, nome, numCC, nif, telefone, morada, localidade);
-                    MetodosAdmin.addUser(user);
+                    MetodosUser.addUser(user);
                 }
 
                 JOptionPane.showMessageDialog(null, "Registado com sucesso.");
