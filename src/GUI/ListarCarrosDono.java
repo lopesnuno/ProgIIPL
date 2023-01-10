@@ -40,9 +40,17 @@ public class ListarCarrosDono {
         }
 
         remover(frame);
+        editar(frame);
         voltar(frame);
     }
 
+    public void editar(JFrame frame) {
+        BotaoEditar.addActionListener(e -> {
+            Carro c = MetodosCarro.selectCarroPorMatriucla(String.valueOf(carrosComboBox.getSelectedItem()));
+            ListarCarrosDono.setVisible(false);
+            new AlterarDadosCarroDono(frame, c);
+        });
+    }
     public void remover(JFrame frame) {
         BotaoRemover.addActionListener(e -> {
             Carro c = MetodosCarro.selectCarroPorMatriucla(String.valueOf(carrosComboBox.getSelectedItem()));

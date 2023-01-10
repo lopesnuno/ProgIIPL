@@ -1,6 +1,7 @@
 package Metodos;
 
 import Entidades.Carro;
+import Estados.Estados;
 import Exceptions.AlterarDadosException;
 import Exceptions.JaExisteCarroException;
 import Repositorio.*;
@@ -49,7 +50,11 @@ public class MetodosCarro {
     }
 
     public static void removerCarro(Carro carro) {
-        Repositorio.getInstance().getCarros().remove(carro);
-        RepositorioSerializable.writeCarros();
+        for (Carro c : Repositorio.getInstance().getCarros()) {
+            if (c.getMatricula().equals(carro.getMatricula())) {
+                c.setEstado(Estados.DESATIVADO);
+                RepositorioSerializable.writeCarros();
+            }
+        }
     }
 }
