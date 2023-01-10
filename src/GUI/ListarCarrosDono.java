@@ -1,6 +1,7 @@
 package GUI;
 
 import Entidades.Carro;
+import Estados.Estados;
 import Metodos.MetodosCarro;
 import Repositorio.Repositorio;
 
@@ -15,6 +16,7 @@ public class ListarCarrosDono {
     private JComboBox carrosComboBox;
     private JButton BotaoRemover;
     private JButton BotaoEditar;
+    private JButton BotaoAtivar;
 
 
     public ListarCarrosDono(JFrame frame) {
@@ -40,6 +42,7 @@ public class ListarCarrosDono {
         }
 
         remover(frame);
+        ativar(frame);
         editar(frame);
         voltar(frame);
     }
@@ -54,8 +57,30 @@ public class ListarCarrosDono {
     public void remover(JFrame frame) {
         BotaoRemover.addActionListener(e -> {
             Carro c = MetodosCarro.selectCarroPorMatriucla(String.valueOf(carrosComboBox.getSelectedItem()));
+
+            if (c != null && c.getEstado().equals(Estados.DESATIVADO)) {
+                JOptionPane.showMessageDialog(null, "Carro já está removido !");
+                return;
+            }
+
             MetodosCarro.removerCarro(c);
             JOptionPane.showMessageDialog(null, "Carro removido.");
+            ListarCarrosDono.setVisible(false);
+            new OpcoesDono(frame);
+        });
+    }
+
+    public void ativar(JFrame frame) {
+        BotaoAtivar.addActionListener(e -> {
+            Carro c = MetodosCarro.selectCarroPorMatriucla(String.valueOf(carrosComboBox.getSelectedItem()));
+
+            if (c != null && c.getEstado().equals(Estados.DISPONIVEL)) {
+                JOptionPane.showMessageDialog(null, "Carro já disponibilizado !");
+                return;
+            }
+
+            MetodosCarro.disponibilizarCarro(c);
+            JOptionPane.showMessageDialog(null, "Carro disponibilizado.");
             ListarCarrosDono.setVisible(false);
             new OpcoesDono(frame);
         });

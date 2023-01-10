@@ -57,4 +57,13 @@ public class MetodosCarro {
             }
         }
     }
+
+    public static void disponibilizarCarro(Carro carro) {
+        for (Carro c : Repositorio.getInstance().getCarros()) {
+            if (c.getMatricula().equals(carro.getMatricula())) {
+                c.setEstado(Estados.DISPONIVEL);
+                RepositorioSerializable.writeCarros();
+            }
+        }
+    }
 }
