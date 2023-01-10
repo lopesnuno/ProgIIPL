@@ -35,7 +35,7 @@ public class MetodosDono {
 
     public static void addCarro(Carro carro) throws JaExisteCarroException {
         boolean existe = false;
-        for (Carro u : Repositorio.getInstance().getUsers()) {
+        for (Carro u : Repositorio.getInstance().getCarros()) {
             if (u.getMatricula().equals(carro.getMatricula()) || u.getMarca() == carro.getMarca()) {
                 existe = true;
                 break;
@@ -54,6 +54,4 @@ public class MetodosDono {
         Repositorio.getInstance().getCarros().remove(carro);
         RepositorioSerializable.writeCarros();
     }
-}
-
 }
