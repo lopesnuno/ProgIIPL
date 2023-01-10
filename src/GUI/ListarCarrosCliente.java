@@ -12,7 +12,7 @@ public class ListarCarrosCliente {
     private JPanel ListaCarros;
     private JButton BotaoVoltar;
     private JTable Carros;
-    private JComboBox usersComboBox;
+    private JComboBox carrosComboBox;
     private JButton BotaoComprar;
     private JButton BotaoReservar;
 
@@ -36,7 +36,7 @@ public class ListarCarrosCliente {
         for (Carro c : Repositorio.getInstance().getCarros()) {
             if (c.getEstado().equals(Estados.DISPONIVEL)) {
                 model.addRow(new Object[]{c.getMarca(), c.getModelo(), c.getAno(), c.getPreco(), c.getMatricula()});
-                usersComboBox.addItem(c.getMatricula());
+                carrosComboBox.addItem(c.getMatricula());
             }
         }
 

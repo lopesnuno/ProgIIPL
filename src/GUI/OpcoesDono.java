@@ -16,6 +16,7 @@ public class OpcoesDono {
 
         listarClientes(frame);
         adicionarCarro(frame);
+        listarCarros(frame);
         logout(frame);
     }
 
@@ -30,6 +31,13 @@ public class OpcoesDono {
         BotaoAdicionarCarro.addActionListener(e -> {
             OpcoesDono.setVisible(false);
             new AdicionarCarroDono(frame);
+        });
+    }
+
+    public void listarCarros(JFrame frame) {
+        ListarCarros.addActionListener(e -> {
+            OpcoesDono.setVisible(false);
+            new ListarCarrosDono(frame);
         });
     }
 
