@@ -6,8 +6,7 @@ public class OpcoesDono {
     private JPanel OpcoesDono;
     private JButton BotaoLogout;
     private JButton ListarClientes;
-    private JButton RemoverClientes;
-    private JButton ButtonRemoveFuncionario;
+    private JButton ListarCarros;
 
     public OpcoesDono(JFrame frame) {
         frame.add(OpcoesDono);

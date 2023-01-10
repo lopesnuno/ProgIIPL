@@ -57,7 +57,6 @@ public class ListarClientes {
         });
     }
 
-    //TODO: Refactor
     public void alterarDados(JFrame frame) {
         BotaoAlterar.addActionListener(e -> {
             User u = MetodosUser.selectUserPorUsername(String.valueOf(clientesComboBox.getSelectedItem()));
@@ -66,7 +65,6 @@ public class ListarClientes {
         });
     }
 
-    //TODO: Refactor -> select e remove
     public void removerUser(JFrame frame) {
         BotaoEliminar.addActionListener(e -> {
             User u = MetodosUser.selectUserPorUsername(String.valueOf(clientesComboBox.getSelectedItem()));
