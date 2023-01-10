@@ -1,5 +1,6 @@
 package Repositorio;
 
+import Entidades.Carro;
 import Entidades.User;
 
 import javax.swing.*;
@@ -23,8 +24,24 @@ public class RepositorioSerializable {
         }
     }
 
+    public static void writeCarros() {
+        File file = new File("carros.dat");
+        try {
+            file.delete();
+            file.createNewFile();
+
+            ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(file));
+            objOutput.writeObject(Repositorio.getInstance().getCarros());
+            objOutput.close();
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Houve um erro: " + e.getMessage());
+        }
+    }
+
     public static void readBin() {
         readUsers();
+        readCarros();
     }
 
     public static void readUsers() {
@@ -36,15 +53,26 @@ public class RepositorioSerializable {
                 users = (List<User>) objInput.readObject();
                 objInput.close();
             }
-        } catch (ClassNotFoundException erro2) {
+        } catch (ClassNotFoundException | IOException erro2) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro2.getMessage());
             return;
         }
-        //
-        catch (IOException erro) {
-            JOptionPane.showMessageDialog(null, "Erro: " + erro.getMessage());
+        Repositorio.getInstance().setUsers(users);
+    }
+
+    public static void readCarros() {
+        List<Carro> carros = new ArrayList<>();
+        try {
+            File file = new File("Carros.dat");
+            if (file.exists()) {
+                ObjectInputStream objInput = new ObjectInputStream(new FileInputStream(file));
+                carros = (List<Carro>) objInput.readObject();
+                objInput.close();
+            }
+        } catch (ClassNotFoundException | IOException erro2) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro2.getMessage());
             return;
         }
-        Repositorio.getInstance().setUsers(users);
+        Repositorio.getInstance().setCarros(carros);
     }
 }
