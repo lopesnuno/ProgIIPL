@@ -37,6 +37,7 @@ public class MetodosUser {
 
     public static void addUser(User user) throws JaExisteUserException {
         boolean existe = false;
+
         for (User u : Repositorio.getInstance().getUsers()) {
             if (u.getUsername().equals(user.getUsername()) || u.getNIF() == user.getNIF()) {
                 existe = true;

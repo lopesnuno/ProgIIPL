@@ -1,6 +1,7 @@
 package Repositorio;
 
 import Entidades.Carro;
+import Entidades.Compra;
 import Entidades.Reserva;
 import Entidades.User;
 
@@ -55,10 +56,26 @@ public class RepositorioSerializable {
         }
     }
 
+    public static void writeCompras() {
+        File file = new File("compras.dat");
+        try {
+            file.delete();
+            file.createNewFile();
+
+            ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(file));
+            objOutput.writeObject(Repositorio.getInstance().getCompras());
+            objOutput.close();
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Houve um erro: " + e.getMessage());
+        }
+    }
+
     public static void readBin() {
         readUsers();
         readCarros();
         readReservas();
+        readCompras();
     }
 
     public static void readUsers() {
@@ -107,5 +124,21 @@ public class RepositorioSerializable {
             return;
         }
         Repositorio.getInstance().setReservas(reservas);
+    }
+
+    public static void readCompras() {
+        List<Compra> compras = new ArrayList<>();
+        try {
+            File file = new File("reservas.dat");
+            if (file.exists()) {
+                ObjectInputStream objInput = new ObjectInputStream(new FileInputStream(file));
+                compras = (List<Compra>) objInput.readObject();
+                objInput.close();
+            }
+        } catch (ClassNotFoundException | IOException erro2) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro2.getMessage());
+            return;
+        }
+        Repositorio.getInstance().setCompras(compras);
     }
 }
