@@ -2,7 +2,9 @@ package Entidades;
 
 import Estados.Estados;
 
-public class Carro {
+import java.io.Serializable;
+
+public class Carro implements Serializable {
     private String matricula;
     private String marca;
     private String modelo;

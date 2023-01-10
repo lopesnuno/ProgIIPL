@@ -35,7 +35,6 @@ public class RepositorioSerializable {
             objOutput.writeObject(Repositorio.getInstance().getCarros());
             objOutput.close();
 
-            //TODO: check why it triggers an error
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Houve um erro: " + e.getMessage());
         }

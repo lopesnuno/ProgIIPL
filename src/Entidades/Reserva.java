@@ -1,8 +1,9 @@
 package Entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Reserva {
+public class Reserva implements Serializable {
     private String matricula;
     private Cliente cliente;
     private Date dataCompra;
