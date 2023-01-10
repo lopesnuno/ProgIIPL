@@ -22,6 +22,7 @@ public class Carro {
     public String getMatricula() {
         return matricula;
     }
+
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
@@ -65,5 +66,4 @@ public class Carro {
     public void setEstado(Estados estado) {
         this.estado = estado;
     }
-
-
+}

@@ -23,20 +23,21 @@ public class RepositorioSerializable {
             JOptionPane.showMessageDialog(null, "Houve um erro: " + e.getMessage());
         }
     }
-        public static void writeCarros() {
-            File file = new File("carros.dat");
-            try {
-                file.delete();
-                file.createNewFile();
 
-                ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(file));
-                objOutput.writeObject(Repositorio.getInstance().getCarros());
-                objOutput.close();
+    public static void writeCarros() {
+        File file = new File("carros.dat");
+        try {
+            file.delete();
+            file.createNewFile();
 
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(null, "Houve um erro: " + e.getMessage());
-            }
+            ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(file));
+            objOutput.writeObject(Repositorio.getInstance().getCarros());
+            objOutput.close();
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Houve um erro: " + e.getMessage());
         }
+    }
 
     public static void readBin() {
         readUsers();
@@ -52,13 +53,8 @@ public class RepositorioSerializable {
                 users = (List<User>) objInput.readObject();
                 objInput.close();
             }
-        } catch (ClassNotFoundException erro2) {
+        } catch (ClassNotFoundException | IOException erro2) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro2.getMessage());
-            return;
-        }
-        //
-        catch (IOException erro) {
-            JOptionPane.showMessageDialog(null, "Erro: " + erro.getMessage());
             return;
         }
         Repositorio.getInstance().setUsers(users);
@@ -73,13 +69,8 @@ public class RepositorioSerializable {
                 carros = (List<Carro>) objInput.readObject();
                 objInput.close();
             }
-        } catch (ClassNotFoundException erro2) {
+        } catch (ClassNotFoundException | IOException erro2) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro2.getMessage());
-            return;
-        }
-        //
-        catch (IOException erro) {
-            JOptionPane.showMessageDialog(null, "Erro: " + erro.getMessage());
             return;
         }
         Repositorio.getInstance().setCarros(carros);
