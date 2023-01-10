@@ -2,6 +2,7 @@ package GUI;
 
 import Entidades.*;
 import Estados.Estados;
+import Metodos.MetodosCarro;
 import Repositorio.Repositorio;
 
 import javax.swing.*;
@@ -40,7 +41,16 @@ public class ListarCarrosCliente {
             }
         }
 
+        reservar(frame);
         voltar(frame);
+    }
+
+    public void reservar(JFrame frame) {
+        BotaoReservar.addActionListener(e -> {
+            Carro c = MetodosCarro.selectCarroPorMatriucla(String.valueOf(carrosComboBox.getSelectedItem()));
+            ListaCarros.setVisible(false);
+            new EscolherDataReserva(frame, c);
+        });
     }
 
     public void voltar(JFrame frame) {

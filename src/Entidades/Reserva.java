@@ -4,22 +4,22 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Reserva implements Serializable {
-    private String matricula;
+    private Carro carro;
     private Cliente cliente;
     private Date dataCompra;
 
-    public Reserva(String matricula, Cliente cliente, Date data) {
-        this.matricula = matricula;
+    public Reserva(Carro carro, Cliente cliente, Date data) {
+        this.carro = carro;
         this.cliente = cliente;
         this.dataCompra = data;
     }
 
-    public String getMatricula() {
-        return matricula;
+    public Carro getCarro() {
+        return carro;
     }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+    public void setCarro(Carro carro) {
+        this.carro = carro;
     }
 
     public Cliente getCliente() {

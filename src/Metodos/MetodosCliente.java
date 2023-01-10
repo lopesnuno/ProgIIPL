@@ -30,11 +30,11 @@ public class MetodosCliente {
         throw new AlterarDadosException("Não foi possível encontrar o cliente que queria alterar.");
     }
 
-    public static void addReserva(Cliente cliente, Carro carro) throws CarroIndisponivelException {
+    public static void addReserva(Cliente cliente, Carro carro, Date data) throws CarroIndisponivelException {
         boolean existe = false;
 
         for (Reserva r : Repositorio.getInstance().getReservas()) {
-            if (r.getMatricula().equals(carro.getMatricula())) {
+            if (r.getCarro().getMatricula().equals(carro.getMatricula())) {
                 existe = true;
                 break;
             }
@@ -43,8 +43,8 @@ public class MetodosCliente {
         if (existe)
             throw new CarroIndisponivelException("Esse carro já está reservado !");
 
-        carro.setEstado(Estados.RESERVADO);
-        Reserva reserva = new Reserva(carro.getMatricula(), cliente, new Date());
+        carro.setEstado(Estados.PENDENTE);
+        Reserva reserva = new Reserva(carro, cliente, data);
         Repositorio.getInstance().getReservas().add(reserva);
         RepositorioSerializable.writeCarros();
         RepositorioSerializable.writeReservas();
