@@ -7,6 +7,7 @@ public class Carro {
     private String modelo;
     private int ano;
     private double preco;
+    private String matricula;
     private Estados estado;
 
     public Carro(String marca, String modelo, int ano, double preco) {
@@ -55,5 +56,13 @@ public class Carro {
 
     public void setEstado(Estados estado) {
         this.estado = estado;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 }
