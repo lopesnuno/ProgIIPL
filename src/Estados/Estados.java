@@ -4,5 +4,7 @@ public enum Estados {
     DESATIVADO,
     DISPONIVEL,
     RESERVADO,
-    PENDENTE
+    PENDENTE,
+    CONCLUIDO,
+    COMPRADO
 }

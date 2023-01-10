@@ -1,6 +1,7 @@
 package GUI;
 
 import Entidades.Reserva;
+import Estados.Estados;
 import Repositorio.Repositorio;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ public class ListarReservasCliente {
 
     //TODO: Cancelar e editar reserva
     public ListarReservasCliente(JFrame frame) {
-        frame.setTitle("Lista de Carros");
+        frame.setTitle("Lista de Reservas");
         frame.setPreferredSize(new Dimension(800, 600));
         frame.add(ListaReservas);
         frame.pack();
@@ -38,7 +39,10 @@ public class ListarReservasCliente {
                 model.addRow(new Object[]{r.getCarro().getMarca(), r.getCarro().getModelo(),
                         r.getCarro().getMatricula(), r.getCarro().getPreco(),
                         r.getDataCompra(), r.getCarro().getEstado()});
-                reservasComboBox.addItem(r.getCarro().getMatricula());
+                // Apenas adicionar à ComboBox ainda não comprou o carro
+                if (r.getCarro().getEstado() != Estados.CONCLUIDO && r.getCarro().getEstado() != Estados.COMPRADO) {
+                    reservasComboBox.addItem(r.getCarro().getMatricula());
+                }
             }
         }
 

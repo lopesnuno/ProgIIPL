@@ -1,18 +1,18 @@
 package GUI;
 
 import Entidades.Reserva;
-import Estados.Estados;
 import Metodos.MetodosCarro;
 import Metodos.MetodosReserva;
 import Repositorio.Repositorio;
 import Repositorio.RepositorioSerializable;
+import Estados.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class ListarReservasDono {
-    private JPanel ListarReservasDono;
+public class ListarReservasAdmin {
+    private JPanel ListarReservasAdmin;
     private JButton BotaoVoltar;
     private JTable ReservasInfo;
     private JComboBox reservasComboBox;
@@ -20,10 +20,10 @@ public class ListarReservasDono {
     private JButton BotaoConfirmarReserva;
 
 
-    public ListarReservasDono(JFrame frame) {
+    public ListarReservasAdmin(JFrame frame) {
         frame.setTitle("Lista de Reservas");
         frame.setPreferredSize(new Dimension(800, 600));
-        frame.add(ListarReservasDono);
+        frame.add(ListarReservasAdmin);
         frame.pack();
         frame.setVisible(true);
 
@@ -62,8 +62,8 @@ public class ListarReservasDono {
                 RepositorioSerializable.writeCarros();
 
                 JOptionPane.showMessageDialog(null, "Reserva cancelada.");
-                ListarReservasDono.setVisible(false);
-                new OpcoesDono(frame);
+                ListarReservasAdmin.setVisible(false);
+                new OpcoesAdmin(frame);
             } else {
                 JOptionPane.showMessageDialog(null, "Erro a cancelar reserva.");
             }
@@ -80,8 +80,8 @@ public class ListarReservasDono {
                 RepositorioSerializable.writeReservas();
 
                 JOptionPane.showMessageDialog(null, "Reserva confirmada.");
-                ListarReservasDono.setVisible(false);
-                new OpcoesDono(frame);
+                ListarReservasAdmin.setVisible(false);
+                new OpcoesAdmin(frame);
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao confirmar reserva.");
             }
@@ -90,8 +90,8 @@ public class ListarReservasDono {
 
     public void voltar(JFrame frame) {
         BotaoVoltar.addActionListener(e -> {
-            ListarReservasDono.setVisible(false);
-            new OpcoesDono(frame);
+            ListarReservasAdmin.setVisible(false);
+            new OpcoesAdmin(frame);
         });
     }
 }

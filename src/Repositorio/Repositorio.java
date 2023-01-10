@@ -1,6 +1,7 @@
 package Repositorio;
 
 import Entidades.Carro;
+import Entidades.Compra;
 import Entidades.Reserva;
 import Entidades.User;
 
@@ -12,6 +13,7 @@ public class Repositorio implements Serializable {
     private List<User> users;
     private List<Carro> carros;
     private List<Reserva> reservas;
+    private List<Compra> compras;
     private static Repositorio singleInstance;
     private User currentUser;
 
@@ -51,6 +53,14 @@ public class Repositorio implements Serializable {
 
     public void setReservas(List<Reserva> reservas) {
         this.reservas = reservas;
+    }
+
+    public List<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<Compra> compras) {
+        this.compras = compras;
     }
 
     public User getCurrentUser() {

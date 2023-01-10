@@ -2,12 +2,15 @@ package GUI;
 
 import Entidades.*;
 import Estados.Estados;
+import Exceptions.JaFoiCompradoException;
 import Metodos.MetodosCarro;
+import Metodos.MetodosCompra;
 import Repositorio.Repositorio;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.Date;
 
 public class ListarCarrosCliente {
     private JPanel ListaCarros;
@@ -42,6 +45,7 @@ public class ListarCarrosCliente {
         }
 
         reservar(frame);
+        comprar(frame);
         voltar(frame);
     }
 
@@ -50,6 +54,25 @@ public class ListarCarrosCliente {
             Carro c = MetodosCarro.selectCarroPorMatriucla(String.valueOf(carrosComboBox.getSelectedItem()));
             ListaCarros.setVisible(false);
             new EscolherDataReserva(frame, c);
+        });
+    }
+
+    //TODO: fix
+    public void comprar(JFrame frame) {
+        BotaoComprar.addActionListener(e -> {
+            try {
+                Carro c = MetodosCarro.selectCarroPorMatriucla(String.valueOf(carrosComboBox.getSelectedItem()));
+                Compra cc = new Compra(c, (Cliente) Repositorio.getInstance().getCurrentUser(), new Date());
+
+                MetodosCompra.addCompra(cc);
+
+                JOptionPane.showMessageDialog(null, "Carro comprado.");
+
+                ListaCarros.setVisible(false);
+                new OpcoesCliente(frame);
+            } catch (JaFoiCompradoException err) {
+                JOptionPane.showMessageDialog(null, err.getMessage());
+            }
         });
     }
 
