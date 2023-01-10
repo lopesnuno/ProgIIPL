@@ -10,6 +10,7 @@ public class OpcoesAdmin {
     private JPanel OpcoesAdmin;
     private JButton BotaoLogout;
     private JButton BotaoListarCompras;
+    private JButton BotaoListarReservas;
 
     public OpcoesAdmin(JFrame frame) {
         frame.add(OpcoesAdmin);
@@ -19,6 +20,7 @@ public class OpcoesAdmin {
         listarUsers(frame);
         adicionarUser(frame);
         listarCompras(frame);
+        listarReservas(frame);
         logout(frame);
     }
 
@@ -40,6 +42,13 @@ public class OpcoesAdmin {
         BotaoListarCompras.addActionListener(e -> {
             OpcoesAdmin.setVisible(false);
             new ListarComprasAdmin(frame);
+        });
+    }
+
+    public void listarReservas(JFrame frame) {
+        BotaoListarReservas.addActionListener(e -> {
+            OpcoesAdmin.setVisible(false);
+            new ListarReservasAdmin(frame);
         });
     }
 
