@@ -2,16 +2,16 @@ package GUI;
 
 import Entidades.Reserva;
 import Metodos.MetodosCarro;
-import Metodos.MetodosDono;
 import Metodos.MetodosReserva;
-import Repositorio.*;
+import Repositorio.Repositorio;
+import Repositorio.RepositorioSerializable;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class ListarReservasDono {
-    private JPanel ListaReservas;
+    private JPanel ListarReservasDono;
     private JButton BotaoVoltar;
     private JTable ReservasInfo;
     private JComboBox reservasComboBox;
@@ -22,7 +22,7 @@ public class ListarReservasDono {
     public ListarReservasDono(JFrame frame) {
         frame.setTitle("Lista de Reservas");
         frame.setPreferredSize(new Dimension(800, 600));
-        frame.add(ListaReservas);
+        frame.add(ListarReservasDono);
         frame.pack();
         frame.setVisible(true);
 
@@ -45,6 +45,7 @@ public class ListarReservasDono {
         }
 
         cancelarReserva(frame);
+        confirmarReserva(frame);
         voltar(frame);
     }
 
@@ -59,18 +60,36 @@ public class ListarReservasDono {
                 RepositorioSerializable.writeCarros();
 
                 JOptionPane.showMessageDialog(null, "Reserva cancelada.");
-                ListaReservas.setVisible(false);
-                new OpcoesCliente(frame);
+                ListarReservasDono.setVisible(false);
+                new OpcoesDono(frame);
             } else {
                 JOptionPane.showMessageDialog(null, "Erro a cancelar reserva.");
             }
         });
     }
 
+    public void confirmarReserva(JFrame frame) {
+        BotaoConfirmarReserva.addActionListener(e -> {
+            Reserva reserva = MetodosReserva.selectReservaPorMatricula(String.valueOf(reservasComboBox.getSelectedItem()));
+
+            if (reserva != null) {
+                MetodosReserva.confirmarReserva(reserva);
+                RepositorioSerializable.writeCarros();
+                RepositorioSerializable.writeReservas();
+
+                JOptionPane.showMessageDialog(null, "Reserva confirmada.");
+                ListarReservasDono.setVisible(false);
+                new OpcoesDono(frame);
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro ao confirmar reserva.");
+            }
+        });
+    }
+
     public void voltar(JFrame frame) {
         BotaoVoltar.addActionListener(e -> {
-            ListaReservas.setVisible(false);
-            new OpcoesCliente(frame);
+            ListarReservasDono.setVisible(false);
+            new OpcoesDono(frame);
         });
     }
 }
