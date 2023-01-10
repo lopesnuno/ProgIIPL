@@ -1,6 +1,8 @@
 package Repositorio;
 
-import Entidades.*;
+import Entidades.Carro;
+import Entidades.Reserva;
+import Entidades.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,12 +11,14 @@ import java.util.List;
 public class Repositorio implements Serializable {
     private List<User> users;
     private List<Carro> carros;
+    private List<Reserva> reservas;
     private static Repositorio singleInstance;
     private User currentUser;
 
     public Repositorio() {
         users = new ArrayList<>();
         carros = new ArrayList<>();
+        reservas = new ArrayList<>();
     }
 
     public static Repositorio getInstance() {
@@ -39,6 +43,14 @@ public class Repositorio implements Serializable {
 
     public void setCarros(List<Carro> carros) {
         this.carros = carros;
+    }
+
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
     }
 
     public User getCurrentUser() {
