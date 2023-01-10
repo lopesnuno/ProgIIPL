@@ -1,9 +1,7 @@
 package Metodos;
 
-import Entidades.Carro;
 import Entidades.User;
 import Exceptions.AlterarDadosException;
-import Exceptions.JaExisteCarroException;
 import Exceptions.JaExisteUserException;
 import Repositorio.Repositorio;
 import Repositorio.RepositorioSerializable;
@@ -52,5 +50,10 @@ public class MetodosUser {
             Repositorio.getInstance().getUsers().add(user);
             RepositorioSerializable.writeUsers();
         }
+    }
+
+    public static void removerUser(User user) {
+        Repositorio.getInstance().getUsers().remove(user);
+        RepositorioSerializable.writeUsers();
     }
 }
