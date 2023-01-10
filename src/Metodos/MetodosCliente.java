@@ -7,7 +7,7 @@ import Entidades.User;
 import Estados.Estados;
 import Exceptions.AlterarDadosException;
 import Exceptions.CarroIndisponivelException;
-import Repositorio.Repositorio;
+import Repositorio.*;
 
 import java.util.Date;
 
@@ -46,6 +46,7 @@ public class MetodosCliente {
         carro.setEstado(Estados.RESERVADO);
         Reserva reserva = new Reserva(carro.getMatricula(), cliente, new Date());
         Repositorio.getInstance().getReservas().add(reserva);
-        // RepositorioSerializable.writeCarros();
+        RepositorioSerializable.writeCarros();
+        RepositorioSerializable.writeReservas();
     }
 }

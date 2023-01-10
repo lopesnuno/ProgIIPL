@@ -7,25 +7,16 @@ public class Carro {
     private String marca;
     private String modelo;
     private int ano;
-    private double preco;
-    private String matricula;
+    private float preco;
     private Estados estado;
 
-    public Carro(String matricula, String marca, String modelo, int ano, double preco) {
+    public Carro(String matricula, String marca, String modelo, int ano, float preco) {
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
         this.preco = preco;
         estado = Estados.DISPONIVEL;
-    }
-
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
     }
 
     public String getMarca() {
@@ -52,11 +43,11 @@ public class Carro {
         this.ano = ano;
     }
 
-    public double getPreco() {
+    public float getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(float preco) {
         this.preco = preco;
     }
 

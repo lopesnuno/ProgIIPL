@@ -1,12 +1,12 @@
 package Repositorio;
 
-import Entidades.*;
+import Entidades.Carro;
+import Entidades.Reserva;
+import Entidades.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Repositorio implements Serializable {
     private List<User> users;

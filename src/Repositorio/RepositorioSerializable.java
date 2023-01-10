@@ -1,6 +1,7 @@
 package Repositorio;
 
 import Entidades.Carro;
+import Entidades.Reserva;
 import Entidades.User;
 
 import javax.swing.*;
@@ -34,6 +35,22 @@ public class RepositorioSerializable {
             objOutput.writeObject(Repositorio.getInstance().getCarros());
             objOutput.close();
 
+            //TODO: check why it triggers an error
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Houve um erro: " + e.getMessage());
+        }
+    }
+
+    public static void writeReservas() {
+        File file = new File("reservas.dat");
+        try {
+            file.delete();
+            file.createNewFile();
+
+            ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(file));
+            objOutput.writeObject(Repositorio.getInstance().getReservas());
+            objOutput.close();
+
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Houve um erro: " + e.getMessage());
         }
@@ -42,6 +59,7 @@ public class RepositorioSerializable {
     public static void readBin() {
         readUsers();
         readCarros();
+        readReservas();
     }
 
     public static void readUsers() {
@@ -74,5 +92,21 @@ public class RepositorioSerializable {
             return;
         }
         Repositorio.getInstance().setCarros(carros);
+    }
+
+    public static void readReservas() {
+        List<Reserva> reservas = new ArrayList<>();
+        try {
+            File file = new File("reservas.dat");
+            if (file.exists()) {
+                ObjectInputStream objInput = new ObjectInputStream(new FileInputStream(file));
+                reservas = (List<Reserva>) objInput.readObject();
+                objInput.close();
+            }
+        } catch (ClassNotFoundException | IOException erro2) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro2.getMessage());
+            return;
+        }
+        Repositorio.getInstance().setReservas(reservas);
     }
 }
