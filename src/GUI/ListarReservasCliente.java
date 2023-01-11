@@ -2,7 +2,9 @@ package GUI;
 
 import Entidades.Reserva;
 import Estados.Estados;
-import Repositorio.Repositorio;
+import Metodos.MetodosCarro;
+import Metodos.MetodosReserva;
+import Repositorio.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -46,7 +48,28 @@ public class ListarReservasCliente {
             }
         }
 
+        cancelar(frame);
         voltar(frame);
+    }
+
+    public void cancelar(JFrame frame) {
+        BotaoCancelarReserva.addActionListener(e -> {
+            Reserva r = MetodosReserva.selectReservaPorMatricula(String.valueOf(reservasComboBox.getSelectedItem()));
+
+            if (r != null) {
+                MetodosReserva.removeReserva(r);
+                MetodosCarro.disponibilizarCarro(r.getCarro());
+                RepositorioSerializable.writeReservas();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error a cancelar reserva !");
+                return;
+            }
+
+            JOptionPane.showMessageDialog(null, "Reserva cancelada.");
+
+            ListaReservas.setVisible(false);
+            new OpcoesCliente(frame);
+        });
     }
 
     public void voltar(JFrame frame) {
