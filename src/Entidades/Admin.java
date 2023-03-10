@@ -6,3 +6,5 @@ public class Admin extends User {
         super(username, password, nome, numCC, NIF, telefone, morada, localidade);
     }
 }
+
+// teste
